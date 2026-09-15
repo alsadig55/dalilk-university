@@ -41,16 +41,16 @@ main{padding:30px 0 50px}.section-head{display:flex;justify-content:space-betwee
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.toolbar select{width:auto;min-width:150px;padding:9px}
 .results-meta{color:var(--muted);font-size:13px;margin:12px 0}
 .table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:auto;box-shadow:0 5px 22px #0b29420a}
-table{width:100%;border-collapse:collapse;min-width:700px}th,td{text-align:right;padding:15px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+table{width:100%;border-collapse:collapse;min-width:0}th,td{text-align:right;padding:15px 14px;border-bottom:1px solid var(--line);vertical-align:top}
 th{background:#f0f5f9;color:#526170;font-size:12px;white-space:nowrap}td{font-size:13px}tbody tr:hover{background:#fbfdff}
 .uni{font-weight:700;color:var(--primary)}.college{line-height:1.8}.pct{font-weight:800;color:var(--green);white-space:nowrap}.score{color:var(--muted)}
 .pill{display:inline-block;border-radius:999px;padding:6px 9px;font-size:11px;background:#eef4f8;color:#4f6478;white-space:nowrap}.pill.ok{background:#e7f7ee;color:var(--green)}.pill.warn{background:#fff4df;color:#9a6515}
 .empty{background:#fff;border:1px dashed #ccd9e5;border-radius:20px;padding:45px;text-align:center;color:var(--muted)}
 .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}.info-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}.info-card .icon{font-size:27px}.info-card h3{font-size:16px;margin:12px 0 7px}.info-card p{color:var(--muted);font-size:13px;line-height:1.9;margin:0}
 footer{background:#0b2942;color:#d9e8f2;padding:28px 0;font-size:12px;line-height:2}
-footer strong{color:#fff}
+footer strong{color:#fff}footer a{color:#fff;text-decoration:none;font-weight:700;direction:ltr;display:inline-block}
 @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero{padding-bottom:45px}.navlinks{display:none}.info-grid{grid-template-columns:1fr}.search-card{max-width:650px}}
-@media(max-width:520px){.container{width:min(100% - 22px,1160px)}.topbar .container{font-size:11px}.nav-inner{min-height:64px}.brand strong{font-size:15px}.brand span{font-size:10px}.form-grid{grid-template-columns:1fr}.hero{padding-top:32px}.hero p{font-size:13px}.search-card{padding:17px;border-radius:20px}h1{letter-spacing:0}.section-head h2{font-size:20px}}
+@media(max-width:520px){.container{width:min(100% - 16px,1160px)}.topbar .container{font-size:11px}.nav-inner{min-height:64px}.brand strong{font-size:15px}.brand span{font-size:10px}.form-grid{grid-template-columns:1fr}.hero{padding-top:32px}.hero p{font-size:13px}.search-card{padding:15px;border-radius:18px}h1{letter-spacing:0}th,td{padding:11px 8px;font-size:11px}.uni{font-size:12px}.pct{font-size:12px}.score{font-size:11px}footer{font-size:11px}.section-head h2{font-size:20px}}
 </style>
 </head>
 <body>
@@ -73,7 +73,6 @@ footer strong{color:#fff}
 <div class="field"><label for="university">الجامعة</label><select id="university"><option value="">كل الجامعات</option></select></div>
 <div class="field"><label for="stream">المساق</label><select id="stream"><option value="">كل المساقات</option><option value="scientific">علمي</option><option value="literary">أدبي</option></select></div>
 <div class="field"><label for="category">نوع الكلية</label><select id="category"><option value="">اختر المساق أولًا</option></select></div>
-<div class="field"><label for="college">التخصص أو الكلية</label><input id="college" placeholder="مثال: هندسة، طب، حاسوب"></div>
 <div class="field"><label for="mode">طريقة العرض</label><select id="mode"><option value="eligible">المناسب لنسبتي</option><option value="closest">الأقرب لنسبتي</option><option value="all">كل النتائج</option></select></div>
 </div>
 <div class="stream-note">التصنيف إلى علمي/أدبي ونوع الكلية تصنيف إرشادي مبني على اسم التخصص في بيانات المصدر، وليس حقلًا أصليًا في ملف القبول.</div><button class="primary" id="searchBtn">اعرض التخصصات المناسبة ←</button>
@@ -84,10 +83,27 @@ footer strong{color:#fff}
 <div class="results-meta" id="count">—</div><div id="resultsBox"></div>
 <div class="info-grid" id="about"><div class="info-card"><div class="icon">📊</div><h3>فلترة ذكية</h3><p>استخدم النسبة واسم الجامعة والتخصص للوصول إلى النتائج التي تهمك.</p></div><div class="info-card"><div class="icon">📚</div><h3>بيانات منظمة</h3><p>كل نتيجة تعرض الجامعة، التخصص، النسبة المطلوبة، ورقم المفاضلة.</p></div><div class="info-card"><div class="icon">📱</div><h3>مناسب للجوال</h3><p>واجهة متجاوبة تعمل على الهاتف والكمبيوتر ويمكن رفعها مباشرة على الاستضافة.</p></div></div>
 </main>
-<footer><div class="container"><strong>دليلك الجامعي</strong><br>هذه نسخة أولية مبنية على ملف نتيجة القبول للبكالريوس 2024م. النسب الواردة ليست ضمانًا للقبول في سنة أخرى، ويجب الرجوع إلى الدليل الرسمي عند التقديم.</div></footer>
+<footer><div class="container"><strong>دليلك الجامعي</strong><br>هذه نسخة أولية مبنية على ملف نتيجة القبول للبكالريوس 2024م. النسب الواردة ليست ضمانًا للقبول في سنة أخرى، ويجب الرجوع إلى الدليل الرسمي عند التقديم.<br><br><strong>تم التصميم بواسطة الباشمهندس الصادق فتح الرحمن</strong><br>للتواصل: <a href="tel:+249121170238">+249 121 170 238</a></div></footer>
 <script src="data.js"></script>
 <script>
-const DATA=window.ADMISSION_DATA||[],$=id=>document.getElementById(id);
+const RAW_DATA=window.ADMISSION_DATA||[], $=id=>document.getElementById(id);
+// توحيد أسماء الجامعات في العرض دون تعديل ملف البيانات الأصلي.
+const UNIVERSITY_NAMES=[
+ "جامعة الخرطوم","جامعة أم درمان الإسلامية","جامعة السودان للعلوم والتكنولوجيا","جامعة الجزيرة","جامعة البطانة",
+ "جامعة القرآن الكريم والعلوم الإسلامية","جامعة القرآن الكريم وتأصيل العلوم - ولاية الجزيرة","جامعة النيلين","جامعة بحري","جامعة دنقلا",
+ "جامعة شندي","جامعة البحر الأحمر","جامعة القضارف","جامعة سنار","جامعة الإمام المهدي","جامعة بخت الرضا","جامعة غرب كردفان",
+ "جامعة الزعيم الأزهري","جامعة وادي النيل","جامعة كسلا","جامعة النيل الأزرق","جامعة كردفان","جامعة السلام","جامعة الدلنج",
+ "جامعة الفاشر","جامعة الجنينة","جامعة السودان التقانية","الجامعة التكنولوجية","جامعة السودان المفتوحة","جامعة كرري (أم درمان)",
+ "جامعة نيالا","جامعة زالنجي","جامعة عبد اللطيف الحمد التكنولوجية","جامعة الضعين","جامعة المناقل للعلوم والتكنولوجيا","جامعة شرق كردفان",
+ "جامعة العلوم الصحية (الخرطوم)","المعهد الإسلامي للترجمة (الخرطوم)","جامعة الرباط الوطني (الخرطوم)","جامعة أفريقيا العالمية (الخرطوم)"
+];
+const UNIVERSITY_MAP={
+ "جامعة الإمام المهدى":"جامعة الإمام المهدي",
+ "جامعة التكنولوجية – الخرطوم":"الجامعة التكنولوجية",
+ "جامعة العلوم الصحية الخرطوم":"جامعة العلوم الصحية (الخرطوم)"
+};
+const cleanUniversity=u=>UNIVERSITY_MAP[String(u||"").trim()]||String(u||"").trim();
+const DATA=RAW_DATA.map(r=>({...r,university:cleanUniversity(r.university)}));
 const norm=s=>String(s||"").normalize("NFKC").replace(/[ًٌٍَُِّْـ]/g,"").replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").replace(/\s+/g," ").trim().toLowerCase();
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#039;"}[m]));
 const rules={
@@ -105,19 +121,19 @@ function render(rows,pct){
  $("count").textContent=`عرض ${rows.length.toLocaleString("ar-EG")} نتيجة`;
  if(!rows.length){$("resultsBox").innerHTML='<div class="empty">لم نجد نتائج مطابقة. جرّب تغيير النسبة أو المساق أو نوع الكلية.</div>';return}
  const n=pct===""?null:Number(pct);
- $("resultsBox").innerHTML='<div class="table-wrap"><table><thead><tr><th>الجامعة</th><th>الكلية / التخصص</th><th>النسبة</th><th>المفاضلة</th><th>المقارنة</th></tr></thead><tbody>'+rows.slice(0,300).map(r=>{const ok=n!==null&&n>=r.percent;return `<tr><td class="uni">${esc(r.university)}</td><td class="college">${esc(r.college)}</td><td class="pct">${r.percent.toFixed(1)}%</td><td class="score">${r.score}</td><td>${n===null?'<span class="pill">بدون مقارنة</span>':ok?'<span class="pill ok">ضمن النسبة</span>':'<span class="pill warn">أعلى من نسبتك</span>'}</td></tr>`}).join('')+'</tbody></table></div>'+(rows.length>300?'<p class="results-meta">يتم عرض أول 300 نتيجة. استخدم الفلاتر لتضييق البحث.</p>':'');
+ $("resultsBox").innerHTML='<div class="table-wrap"><table><thead><tr><th>الجامعة</th><th>النسبة</th><th>المفاضلة</th><th>المقارنة</th></tr></thead><tbody>'+rows.slice(0,300).map(r=>{const ok=n!==null&&n>=r.percent;return `<tr><td class="uni">${esc(r.university)}</td><td class="pct">${r.percent.toFixed(1)}%</td><td class="score">${r.score}</td><td>${n===null?'<span class="pill">بدون مقارنة</span>':ok?'<span class="pill ok">ضمن النسبة</span>':'<span class="pill warn">أعلى من نسبتك</span>'}</td></tr>`}).join('')+'</tbody></table></div>'+(rows.length>300?'<p class="results-meta">يتم عرض أول 300 نتيجة. استخدم الفلاتر لتضييق البحث.</p>':'');
 }
 function search(){
- const pct=$("percent").value.trim(),uni=$("university").value,q=norm($("college").value),stream=$("stream").value,category=$("category").value,mode=$("mode").value,sort=$("sort").value;
- let rows=DATA.filter(r=>(!uni||r.university===uni)&&(!q||norm(r.college).includes(q))&&isMatch(r,stream,category));
+ const pct=$("percent").value.trim(),uni=$("university").value,stream=$("stream").value,category=$("category").value,mode=$("mode").value,sort=$("sort").value;
+ let rows=DATA.filter(r=>(!uni||r.university===uni)&&isMatch(r,stream,category));
  if(pct!==""){const n=Number(pct);if(mode==="eligible")rows=rows.filter(r=>r.percent<=n);if(mode==="closest")rows.sort((a,b)=>Math.abs(a.percent-n)-Math.abs(b.percent-n));}
  rows.sort((a,b)=>sort==="asc"?a.percent-b.percent:b.percent-a.percent);render(rows,pct);
 }
-function reset(){ $("percent").value="";$("university").value="";$("college").value="";$("stream").value="";updateCategories();$("mode").value="eligible";$("sort").value="desc";render(DATA.slice().sort((a,b)=>b.percent-a.percent).slice(0,50),"");}
+function reset(){ $("percent").value="";$("university").value="";$("stream").value="";updateCategories();$("mode").value="eligible";$("sort").value="desc";render(DATA.slice().sort((a,b)=>b.percent-a.percent).slice(0,50),"");}
 $("statRecords").textContent=DATA.length.toLocaleString("ar-EG");$("statUniversities").textContent=new Set(DATA.map(x=>x.university)).size.toLocaleString("ar-EG");
 [...new Set(DATA.map(x=>x.university))].sort((a,b)=>a.localeCompare(b,"ar")).forEach(u=>{const o=document.createElement("option");o.value=u;o.textContent=u;$("university").appendChild(o)});
 $("stream").onchange=()=>{updateCategories();search()};$("category").onchange=search;$("searchBtn").onclick=search;$("resetBtn").onclick=reset;$("sort").onchange=search;
-["percent","college"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter")search()}));
+["percent"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter")search()}));
 reset();
 </script>
 </body>
