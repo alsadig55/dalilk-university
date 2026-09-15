@@ -31,7 +31,7 @@ h1{font-size:clamp(28px,4vw,48px);line-height:1.25;margin:18px 0 12px;letter-spa
 .hero-stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.stat{background:#ffffff13;border:1px solid #ffffff25;border-radius:15px;padding:12px 15px}.stat b{display:block;font-size:20px}.stat span{font-size:11px;color:#d5e5f0}
 .search-card{background:#fff;color:var(--ink);border-radius:25px;padding:22px;box-shadow:var(--shadow);position:relative;z-index:1}
 .search-card h2{margin:0 0 5px;font-size:20px}.search-card p{color:var(--muted);font-size:12px;line-height:1.8;margin:0 0 18px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}.hint{font-size:10px;color:#8795a5;margin-top:5px;line-height:1.5}.stream-note{margin-top:10px;padding:9px 11px;background:#f5f8fb;border:1px solid var(--line);border-radius:11px;color:var(--muted);font-size:10px;line-height:1.6}
 input,select{width:100%;border:1px solid #d9e2eb;background:#fbfdff;border-radius:13px;padding:12px;color:var(--ink);min-width:0}
 input:focus,select:focus{outline:3px solid #cfe6f7;border-color:#83bce2}
 .primary{width:100%;border:0;border-radius:14px;background:linear-gradient(135deg,#1769aa,#0b2942);color:#fff;padding:14px;font-weight:700;margin-top:14px}
@@ -71,10 +71,12 @@ footer strong{color:#fff}
 <div class="form-grid">
 <div class="field"><label for="percent">نسبتك المئوية</label><input id="percent" type="number" min="0" max="100" step="0.1" placeholder="مثال: 72"></div>
 <div class="field"><label for="university">الجامعة</label><select id="university"><option value="">كل الجامعات</option></select></div>
+<div class="field"><label for="stream">المساق</label><select id="stream"><option value="">كل المساقات</option><option value="scientific">علمي</option><option value="literary">أدبي</option></select></div>
+<div class="field"><label for="category">نوع الكلية</label><select id="category"><option value="">اختر المساق أولًا</option></select></div>
 <div class="field"><label for="college">التخصص أو الكلية</label><input id="college" placeholder="مثال: هندسة، طب، حاسوب"></div>
 <div class="field"><label for="mode">طريقة العرض</label><select id="mode"><option value="eligible">المناسب لنسبتي</option><option value="closest">الأقرب لنسبتي</option><option value="all">كل النتائج</option></select></div>
 </div>
-<button class="primary" id="searchBtn">اعرض التخصصات المناسبة ←</button>
+<div class="stream-note">التصنيف إلى علمي/أدبي ونوع الكلية تصنيف إرشادي مبني على اسم التخصص في بيانات المصدر، وليس حقلًا أصليًا في ملف القبول.</div><button class="primary" id="searchBtn">اعرض التخصصات المناسبة ←</button>
 </div>
 </div></section>
 <main class="container" id="results">
@@ -87,25 +89,34 @@ footer strong{color:#fff}
 <script>
 const DATA=window.ADMISSION_DATA||[],$=id=>document.getElementById(id);
 const norm=s=>String(s||"").normalize("NFKC").replace(/[ًٌٍَُِّْـ]/g,"").replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").replace(/\s+/g," ").trim().toLowerCase();
-const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#039;"}[m]));
+const rules={
+ scientific:{label:"علمي",categories:[
+  ["engineering","الكليات الهندسية",/هندس|عماره|معمار|تعدين|اتصالات|كهربا|ميكانيك|مدني|كيميائ|تحكم|طيران/],
+  ["medical","الكليات الطبية والصحية",/طب|اسنان|صيدل|تمريض|مختبر|صحه|بيطر|تخدير|اشعاع|علاج|قباله|بصريات|سمع|طبي/],
+  ["computer","الحاسوب والتقنية",/حاسوب|حوسب|معلومات|تقانه|برمج|نظم المعلومات|ذكاء اصطناعي|شبكات/]
+ ]},
+ literary:{label:"أدبي",categories:[["literary","الكليات الأدبية",/.*/]]}
+};
+function classify(r){const t=norm(r.college);for(const stream of Object.keys(rules)){if(stream==="scientific"){for(const [id,label,re] of rules.scientific.categories){if(re.test(t))return {stream,category:id}}}else if(stream==="literary"){return {stream,category:"literary"}}}return {stream:"scientific",category:"other"};}
+function isMatch(r,stream,category){if(!stream)return true;const c=classify(r);if(c.stream!==stream)return false;return !category||c.category===category;}
+function updateCategories(){const stream=$("stream").value,sel=$("category");sel.innerHTML="";if(!stream){sel.innerHTML='<option value="">اختر المساق أولًا</option>';return}sel.innerHTML='<option value="">كل الكليات</option>'+rules[stream].categories.map(([id,label])=>`<option value="${id}">${label}</option>`).join("");}
 function render(rows,pct){
  $("count").textContent=`عرض ${rows.length.toLocaleString("ar-EG")} نتيجة`;
- if(!rows.length){$("resultsBox").innerHTML='<div class="empty">لم نجد نتائج مطابقة. جرّب تغيير النسبة أو الفلاتر.</div>';return}
+ if(!rows.length){$("resultsBox").innerHTML='<div class="empty">لم نجد نتائج مطابقة. جرّب تغيير النسبة أو المساق أو نوع الكلية.</div>';return}
  const n=pct===""?null:Number(pct);
- $("resultsBox").innerHTML='<div class="table-wrap"><table><thead><tr><th>الجامعة</th><th>الكلية / التخصص</th><th>النسبة</th><th>المفاضلة</th><th>المقارنة</th></tr></thead><tbody>'+
- rows.slice(0,300).map(r=>{const ok=n!==null&&n>=r.percent;return `<tr><td class="uni">${esc(r.university)}</td><td class="college">${esc(r.college)}</td><td class="pct">${r.percent.toFixed(1)}%</td><td class="score">${r.score}</td><td>${n===null?'<span class="pill">بدون مقارنة</span>':ok?'<span class="pill ok">ضمن النسبة</span>':'<span class="pill warn">أعلى من نسبتك</span>'}</td></tr>`}).join("")+
-'</tbody></table></div>'+(rows.length>300?'<p class="results-meta">يتم عرض أول 300 نتيجة. استخدم الفلاتر لتضييق البحث.</p>':'');
+ $("resultsBox").innerHTML='<div class="table-wrap"><table><thead><tr><th>الجامعة</th><th>الكلية / التخصص</th><th>النسبة</th><th>المفاضلة</th><th>المقارنة</th></tr></thead><tbody>'+rows.slice(0,300).map(r=>{const ok=n!==null&&n>=r.percent;return `<tr><td class="uni">${esc(r.university)}</td><td class="college">${esc(r.college)}</td><td class="pct">${r.percent.toFixed(1)}%</td><td class="score">${r.score}</td><td>${n===null?'<span class="pill">بدون مقارنة</span>':ok?'<span class="pill ok">ضمن النسبة</span>':'<span class="pill warn">أعلى من نسبتك</span>'}</td></tr>`}).join('')+'</tbody></table></div>'+(rows.length>300?'<p class="results-meta">يتم عرض أول 300 نتيجة. استخدم الفلاتر لتضييق البحث.</p>':'');
 }
 function search(){
- const pct=$("percent").value.trim(),uni=$("university").value,q=norm($("college").value),mode=$("mode").value,sort=$("sort").value;
- let rows=DATA.filter(r=>(!uni||r.university===uni)&&(!q||norm(r.college).includes(q)));
+ const pct=$("percent").value.trim(),uni=$("university").value,q=norm($("college").value),stream=$("stream").value,category=$("category").value,mode=$("mode").value,sort=$("sort").value;
+ let rows=DATA.filter(r=>(!uni||r.university===uni)&&(!q||norm(r.college).includes(q))&&isMatch(r,stream,category));
  if(pct!==""){const n=Number(pct);if(mode==="eligible")rows=rows.filter(r=>r.percent<=n);if(mode==="closest")rows.sort((a,b)=>Math.abs(a.percent-n)-Math.abs(b.percent-n));}
  rows.sort((a,b)=>sort==="asc"?a.percent-b.percent:b.percent-a.percent);render(rows,pct);
 }
-function reset(){ $("percent").value="";$("university").value="";$("college").value="";$("mode").value="eligible";$("sort").value="desc";render(DATA.slice().sort((a,b)=>b.percent-a.percent).slice(0,50),"");}
+function reset(){ $("percent").value="";$("university").value="";$("college").value="";$("stream").value="";updateCategories();$("mode").value="eligible";$("sort").value="desc";render(DATA.slice().sort((a,b)=>b.percent-a.percent).slice(0,50),"");}
 $("statRecords").textContent=DATA.length.toLocaleString("ar-EG");$("statUniversities").textContent=new Set(DATA.map(x=>x.university)).size.toLocaleString("ar-EG");
 [...new Set(DATA.map(x=>x.university))].sort((a,b)=>a.localeCompare(b,"ar")).forEach(u=>{const o=document.createElement("option");o.value=u;o.textContent=u;$("university").appendChild(o)});
-$("searchBtn").onclick=search;$("resetBtn").onclick=reset;$("sort").onchange=search;
+$("stream").onchange=()=>{updateCategories();search()};$("category").onchange=search;$("searchBtn").onclick=search;$("resetBtn").onclick=reset;$("sort").onchange=search;
 ["percent","college"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter")search()}));
 reset();
 </script>
