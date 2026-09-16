@@ -51,20 +51,22 @@ footer{background:#0b2942;color:#d9e8f2;padding:28px 0;font-size:12px;line-heigh
 footer strong{color:#fff}footer a{color:#fff;text-decoration:none;font-weight:700;direction:ltr;display:inline-block}
 @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero{padding-bottom:45px}.navlinks{display:none}.info-grid{grid-template-columns:1fr}.search-card{max-width:650px}}
 @media(max-width:520px){.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{min-width:860px}.container{width:min(100% - 16px,1160px)}.topbar .container{font-size:11px}.nav-inner{min-height:64px}.brand strong{font-size:15px}.brand span{font-size:10px}.form-grid{grid-template-columns:1fr}.hero{padding-top:32px}.hero p{font-size:13px}.search-card{padding:15px;border-radius:18px}h1{letter-spacing:0}th,td{padding:11px 8px;font-size:11px}.uni{font-size:12px}.pct{font-size:12px}.score{font-size:11px}footer{font-size:11px}.section-head h2{font-size:20px}}
+
+.faq-section{margin-top:28px}.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.faq-card,.ai-card,.links-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 5px 22px #0b29420a}.faq-card details{border-bottom:1px solid var(--line);padding:0}.faq-card details:last-child{border-bottom:0}.faq-card summary{list-style:none;cursor:pointer;font-weight:700;font-size:14px;padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}.faq-card summary::-webkit-details-marker{display:none}.faq-card summary:after{content:'+';font-size:20px;color:var(--primary2);flex:0 0 auto}.faq-card details[open] summary:after{content:'−'}.faq-answer{color:var(--muted);font-size:13px;line-height:1.9;padding:0 0 16px}.ai-card{margin-top:16px}.ai-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}.ai-icon{width:44px;height:44px;border-radius:14px;background:#eaf4fb;display:grid;place-items:center;font-size:23px}.ai-card h3{margin:0;font-size:17px}.ai-card p{margin:3px 0 0;color:var(--muted);font-size:12px}.ai-form{display:flex;gap:8px}.ai-form input{flex:1}.ai-form button{border:0;border-radius:12px;background:linear-gradient(135deg,#1769aa,#0b2942);color:#fff;padding:0 18px;font-weight:700}.ai-answer{display:none;margin-top:12px;background:#f5f8fb;border:1px solid var(--line);border-radius:14px;padding:13px;color:var(--ink);font-size:13px;line-height:1.9}.ai-answer.show{display:block}.ai-suggestions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.ai-suggestions button{border:1px solid #d8e2ec;background:#fff;color:var(--primary);border-radius:999px;padding:7px 10px;font-size:11px}.links-section{margin-top:28px}.links-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.related-link{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;text-decoration:none;color:var(--ink);transition:.2s}.related-link:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#c8ddeb}.related-link strong{display:block;font-size:13px;margin-bottom:5px}.related-link span{display:block;color:var(--muted);font-size:11px;line-height:1.6}.related-link .go{display:inline-block;margin-top:8px;color:var(--primary2);font-size:11px;font-weight:700}@media(max-width:850px){.faq-grid{grid-template-columns:1fr}.links-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.ai-form{flex-direction:column}.ai-form button{padding:11px}.links-grid{grid-template-columns:1fr}.faq-card,.ai-card,.links-card{padding:15px}}
 </style>
 </head>
 <body>
 <div class="topbar"><div class="container"><span>🎓 منصة بحث مبسطة للقبول الجامعي</span><span>المصدر: نتيجة القبول للبكالريوس 2024م</span></div></div>
 <nav class="nav"><div class="container nav-inner">
 <a class="brand" href="#"><div class="logo">🎓</div><div><strong>دليلك الجامعي</strong><span>اكتشف خياراتك الجامعية بسهولة</span></div></a>
-<div class="navlinks"><a href="#search">البحث</a><a href="#results">النتائج</a><a href="#about">عن المنصة</a></div>
+<div class="navlinks"><a href="#search">البحث</a><a href="#results">النتائج</a><a href="#faq">الأسئلة الشائعة</a><a href="#related">روابط مهمة</a></div>
 </div></nav>
 <section class="hero" id="search"><div class="container hero-grid">
 <div>
 <span class="eyebrow">✨ نسخة تجريبية احترافية</span>
 <h1>اعرف التخصصات<br>المناسبة لنسبتك</h1>
 <p>ابحث في بيانات القبول الجامعي، وقارن بين الجامعات والتخصصات والنسب المطلوبة في واجهة سهلة وسريعة ومناسبة للجوال.</p>
-<div class="hero-stats"><div class="stat"><b id="statRecords">—</b><span>سجل القبول</span></div><div class="stat"><b id="statUniversities">—</b><span>الجامعات</span></div><div class="stat"><b>2024</b><span>دليل 2024</span></div></div>
+<div class="hero-stats"><div class="stat"><b id="statRecords">—</b><span>سجل قبول</span></div><div class="stat"><b id="statUniversities">—</b><span>جامعة / كيان</span></div><div class="stat"><b>2024</b><span>عام المصدر</span></div></div>
 </div>
 <div class="search-card">
 <h2>🔎 ابحث عن فرصك</h2><p>أدخل نسبتك ثم اختر طريقة عرض النتائج. يمكنك ترك الحقول الأخرى فارغة.</p>
@@ -82,6 +84,42 @@ footer strong{color:#fff}footer a{color:#fff;text-decoration:none;font-weight:70
 <div class="section-head"><div><h2>نتائج القبول</h2><p>نتائج مرتبة وواضحة لمساعدتك في الاستكشاف.</p></div><div class="toolbar"><select id="sort"><option value="desc">الأعلى نسبة أولًا</option><option value="asc">الأقل نسبة أولًا</option></select><button class="secondary" id="resetBtn">إعادة ضبط</button></div></div>
 <div class="results-meta" id="count">—</div><div id="resultsBox"></div>
 <div class="info-grid" id="about"><div class="info-card"><div class="icon">📊</div><h3>فلترة ذكية</h3><p>استخدم النسبة واسم الجامعة والتخصص للوصول إلى النتائج التي تهمك.</p></div><div class="info-card"><div class="icon">📚</div><h3>بيانات منظمة</h3><p>كل نتيجة تعرض الجامعة، التخصص، النسبة المطلوبة، ورقم المفاضلة.</p></div><div class="info-card"><div class="icon">📱</div><h3>مناسب للجوال</h3><p>واجهة متجاوبة تعمل على الهاتف والكمبيوتر ويمكن رفعها مباشرة على الاستضافة.</p></div></div>
+
+<section class="faq-section" id="faq">
+<div class="section-head"><div><h2>❓ الأسئلة الشائعة</h2><p>إجابات مختصرة عن طريقة استخدام المنصة ومصدر البيانات.</p></div></div>
+<div class="faq-grid">
+<div class="faq-card">
+<details open><summary>ما هي منصة دليلك الجامعي؟</summary><div class="faq-answer">منصة بحث تساعد الطالب على استكشاف الجامعات والكليات والتخصصات ونسب القبول الواردة في بيانات القبول المتاحة للمصدر المستخدم في المنصة.</div></details>
+<details><summary>هل النتائج تعني أنني سأُقبل بالتأكيد؟</summary><div class="faq-answer">لا. النتائج للاستكشاف والمقارنة فقط، ولا تمثل ضماناً للقبول في سنة أخرى. يجب الرجوع إلى الدليل والجهة الرسمية عند التقديم.</div></details>
+<details><summary>ما سنة بيانات القبول في المنصة؟</summary><div class="faq-answer">البيانات الحالية في المنصة مبنية على نتيجة القبول للبكالريوس لعام 2024م.</div></details>
+<details><summary>كيف أستخدم البحث؟</summary><div class="faq-answer">أدخل نسبتك، ثم اختر الجامعة إن رغبت، وبعدها حدد المساق ونوع الكلية، واختر طريقة عرض النتائج ثم اضغط «اعرض التخصصات المناسبة».</div></details>
+</div>
+<div class="faq-card">
+<details><summary>ما الفرق بين المساق ونوع الكلية؟</summary><div class="faq-answer">المساق يحدد علمي أو أدبي. وبعد اختياره تظهر فئات الكليات المناسبة، ثم تعرض النتائج اسم الجامعة واسم الكلية أو التخصص.</div></details>
+<details><summary>هل تصنيف الكليات رسمي؟</summary><div class="faq-answer">التصنيف الإرشادي في المنصة مبني على اسم التخصص في بيانات المصدر، وليس حقلاً أصلياً منفصلاً في ملف القبول؛ لذلك يُستخدم للمساعدة في البحث وليس بديلاً عن الدليل الرسمي.</div></details>
+<details><summary>أين أقدّم طلب القبول الرسمي؟</summary><div class="faq-answer">للتقديم الفعلي ومتابعة الإجراءات استخدم بوابة التقديم الرسمية التابعة لوزارة التعليم العالي والبحث العلمي.</div></details>
+<details><summary>كيف أتأكد من آخر الشروط والمواعيد؟</summary><div class="faq-answer">راجع مواقع وزارة التعليم العالي والبحث العلمي والإدارة العامة للقبول والإعلانات الرسمية، لأن الشروط والمواعيد قد تتغير من عام إلى آخر.</div></details>
+</div>
+</div>
+
+<div class="ai-card" id="ai">
+<div class="ai-head"><div class="ai-icon">🤖</div><div><h3>مساعد الأسئلة الشائعة الذكي</h3><p>اكتب سؤالك، وسيبحث المساعد داخل قاعدة الأسئلة الشائعة في المنصة.</p></div></div>
+<div class="ai-form"><input id="aiQuestion" type="text" placeholder="مثال: هل النتائج تضمن القبول؟"><button id="aiAsk">اسأل المساعد</button></div>
+<div class="ai-suggestions"><button data-q="كيف أستخدم البحث؟">كيف أستخدم البحث؟</button><button data-q="هل النتائج تضمن القبول؟">هل النتائج تضمن القبول؟</button><button data-q="ما سنة البيانات؟">ما سنة البيانات؟</button><button data-q="أين أقدم رسمياً؟">أين أقدم رسمياً؟</button></div>
+<div class="ai-answer" id="aiAnswer"></div>
+</div>
+</section>
+
+<section class="links-section" id="related">
+<div class="section-head"><div><h2>🔗 مواقع ذات صلة</h2><p>روابط رسمية ومصادر مساعدة للطالب.</p></div></div>
+<div class="links-grid">
+<a class="related-link" href="https://www.mohe.gov.sd/" target="_blank" rel="noopener"><strong>وزارة التعليم العالي والبحث العلمي</strong><span>الموقع الرسمي للوزارة والأخبار والخدمات.</span><span class="go">زيارة الموقع ←</span></a>
+<a class="related-link" href="https://admission.gov.sd/" target="_blank" rel="noopener"><strong>بوابة القبول والتقديم</strong><span>منصة التقديم الإلكتروني للجامعات السودانية.</span><span class="go">زيارة البوابة ←</span></a>
+<a class="related-link" href="https://daleel.admission.gov.sd/" target="_blank" rel="noopener"><strong>دليل القبول</strong><span>دليل مؤسسات التعليم العالي والبرامج والقبول.</span><span class="go">فتح الدليل ←</span></a>
+<a class="related-link" href="https://link.mohe.gov.sd/Startup/Home/Services_Info.aspx" target="_blank" rel="noopener"><strong>المركز المعرفي</strong><span>أدلة الجامعات والقبول والتقديم والخدمات الإجرائية.</span><span class="go">فتح المركز ←</span></a>
+<a class="related-link" href="https://admission.gov.sd/AI/Default.aspx" target="_blank" rel="noopener"><strong>مساعد القبول الذكي الرسمي</strong><span>مساعد رسمي للاستفسارات المتعلقة بالقبول.</span><span class="go">فتح المساعد ←</span></a>
+</div>
+</section>
 </main>
 <footer><div class="container"><strong>دليلك الجامعي</strong><br>هذه نسخة أولية مبنية على ملف نتيجة القبول للبكالريوس 2024م. النسب الواردة ليست ضمانًا للقبول في سنة أخرى، ويجب الرجوع إلى الدليل الرسمي عند التقديم.<br><br><strong>تم التصميم بواسطة الباشمهندس الصادق فتح الرحمن</strong><br>للتواصل: <a href="tel:+249121170238">+249 121 170 238</a></div></footer>
 <script src="data.js"></script>
@@ -156,6 +194,24 @@ $("statRecords").textContent=DATA.length.toLocaleString("ar-EG");$("statUniversi
 [...new Set(DATA.map(x=>x.university))].sort((a,b)=>a.localeCompare(b,"ar")).forEach(u=>{const o=document.createElement("option");o.value=u;o.textContent=u;$("university").appendChild(o)});
 $("stream").onchange=()=>{updateCategories();search()};$("category").onchange=search;$("searchBtn").onclick=search;$("resetBtn").onclick=reset;$("sort").onchange=search;
 ["percent"].forEach(id=>$(id).addEventListener("keydown",e=>{if(e.key==="Enter")search()}));
+const FAQ_AI=[
+ {keys:["استخدم البحث","استخدام البحث","ابحث","كيف ابحث","طريقة البحث"],answer:"أدخل نسبتك، ثم اختر الجامعة إن رغبت، وبعدها حدد المساق ونوع الكلية، واختر طريقة عرض النتائج ثم اضغط «اعرض التخصصات المناسبة»."},
+ {keys:["تضمن القبول","ضمان القبول","مضمون القبول","هل اقبل","سأقبل"],answer:"لا. نتائج المنصة للاستكشاف والمقارنة فقط، ولا تمثل ضماناً للقبول في سنة أخرى. يجب الرجوع إلى الدليل والجهة الرسمية عند التقديم."},
+ {keys:["سنة البيانات","سنة القبول","عام البيانات","2024","المصدر"],answer:"البيانات الحالية في المنصة مبنية على نتيجة القبول للبكالريوس لعام 2024م."},
+ {keys:["المساق","نوع الكلية","علمي","ادبي","أدبي"],answer:"اختر المساق أولاً: علمي أو أدبي. بعد ذلك تظهر فئات الكليات المناسبة، ثم تعرض النتائج اسم الجامعة واسم الكلية أو التخصص."},
+ {keys:["التصنيف رسمي","تصنيف الكليات","التصنيف","رسمي"],answer:"التصنيف في المنصة إرشادي ومبني على اسم التخصص في بيانات المصدر، وليس حقلاً أصلياً منفصلاً في ملف القبول؛ لذلك يجب استخدام الدليل الرسمي للتحقق النهائي."},
+ {keys:["اقدم رسميا","التقديم الرسمي","اين اقدم","التقديم","التسجيل"],answer:"للتقديم الفعلي استخدم بوابة التقديم الرسمية لوزارة التعليم العالي والبحث العلمي: admission.gov.sd. يمكنك أيضاً فتحها من قسم «مواقع ذات صلة» أسفل الصفحة."},
+ {keys:["الشروط","المواعيد","اخر تحديث","آخر تحديث"],answer:"الشروط والمواعيد قد تتغير من عام إلى آخر. تحقق من إعلانات وزارة التعليم العالي والإدارة العامة للقبول والمواقع الرسمية قبل التقديم."}
+];
+function aiReply(question){
+ const q=norm(question); if(!q)return "اكتب سؤالك أولاً، مثل: كيف أستخدم البحث؟";
+ let best=null,bestScore=0;
+ FAQ_AI.forEach(item=>{let score=0;item.keys.forEach(k=>{const nk=norm(k);if(q.includes(nk))score+=nk.length>4?3:1;});if(score>bestScore){bestScore=score;best=item;}});
+ if(best)return best.answer;
+ return "لم أجد إجابة مباشرة داخل الأسئلة الشائعة. جرّب سؤالاً عن طريقة البحث، سنة البيانات، ضمان القبول، المساق ونوع الكلية، أو التقديم الرسمي.";
+}
+function askAI(){const q=$("aiQuestion").value.trim(),box=$("aiAnswer");box.innerHTML='<strong>🤖 المساعد:</strong> '+esc(aiReply(q));box.classList.add('show');}
+$("aiAsk").onclick=askAI;$("aiQuestion").addEventListener("keydown",e=>{if(e.key==="Enter")askAI()});document.querySelectorAll(".ai-suggestions button").forEach(b=>b.onclick=()=>{$("aiQuestion").value=b.dataset.q;askAI()});
 reset();
 </script>
 </body>
