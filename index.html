@@ -47,6 +47,9 @@ th{background:#f0f5f9;color:#526170;font-size:12px;white-space:nowrap}td{font-si
 .pill{display:inline-block;border-radius:999px;padding:6px 9px;font-size:11px;background:#eef4f8;color:#4f6478;white-space:nowrap}.pill.ok{background:#e7f7ee;color:var(--green)}.pill.warn{background:#fff4df;color:#9a6515}
 .empty{background:#fff;border:1px dashed #ccd9e5;border-radius:20px;padding:45px;text-align:center;color:var(--muted)}
 .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}.info-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}.info-card .icon{font-size:27px}.info-card h3{font-size:16px;margin:12px 0 7px}.info-card p{color:var(--muted);font-size:13px;line-height:1.9;margin:0}
+
+.visitor-section{padding:0 0 28px}.visitor-box{width:min(1160px,calc(100% - 32px));margin:auto;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:18px 22px;display:flex;align-items:center;gap:14px}.visitor-icon{width:46px;height:46px;border-radius:14px;background:var(--surface2);display:grid;place-items:center;font-size:22px}.visitor-box strong{display:block;font-size:15px}.visitor-box span{display:block;color:var(--muted);font-size:11px;margin-top:4px}.visitor-count{margin-right:auto;background:var(--primary);color:#fff;border-radius:14px;padding:9px 16px;font-size:18px;font-weight:800;min-width:70px;text-align:center}
+
 footer{background:#0b2942;color:#d9e8f2;padding:28px 0;font-size:12px;line-height:2}
 footer strong{color:#fff}footer a{color:#fff;text-decoration:none;font-weight:700;direction:ltr;display:inline-block}
 @media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero{padding-bottom:45px}.navlinks{display:none}.info-grid{grid-template-columns:1fr}.search-card{max-width:650px}}
@@ -118,6 +121,13 @@ footer strong{color:#fff}footer a{color:#fff;text-decoration:none;font-weight:70
 <a class="related-link" href="https://daleel.admission.gov.sd/" target="_blank" rel="noopener"><strong>دليل القبول</strong><span>دليل مؤسسات التعليم العالي والبرامج والقبول.</span><span class="go">فتح الدليل ←</span></a>
 <a class="related-link" href="https://link.mohe.gov.sd/Startup/Home/Services_Info.aspx" target="_blank" rel="noopener"><strong>المركز المعرفي</strong><span>أدلة الجامعات والقبول والتقديم والخدمات الإجرائية.</span><span class="go">فتح المركز ←</span></a>
 <a class="related-link" href="https://admission.gov.sd/AI/Default.aspx" target="_blank" rel="noopener"><strong>مساعد القبول الذكي الرسمي</strong><span>مساعد رسمي للاستفسارات المتعلقة بالقبول.</span><span class="go">فتح المساعد ←</span></a>
+</div>
+</section>
+<section class="visitor-section" id="visitors">
+<div class="visitor-box">
+<div class="visitor-icon">👥</div>
+<div><strong>عدد الزيارات</strong><span>زيارات هذا الموقع من هذا الجهاز</span></div>
+<div class="visitor-count" id="visitorCount">0</div>
 </div>
 </section>
 </main>
@@ -212,6 +222,8 @@ function aiReply(question){
 }
 function askAI(){const q=$("aiQuestion").value.trim(),box=$("aiAnswer");box.innerHTML='<strong>🤖 المساعد:</strong> '+esc(aiReply(q));box.classList.add('show');}
 $("aiAsk").onclick=askAI;$("aiQuestion").addEventListener("keydown",e=>{if(e.key==="Enter")askAI()});document.querySelectorAll(".ai-suggestions button").forEach(b=>b.onclick=()=>{$("aiQuestion").value=b.dataset.q;askAI()});
+// عداد محلي: يحسب مرات فتح الموقع على هذا الجهاز والمتصفح فقط.
+try{const key="dalilk_local_visits";let visits=Number(localStorage.getItem(key)||0)+1;localStorage.setItem(key,String(visits));$("visitorCount").textContent=visits.toLocaleString("ar-EG");}catch(e){$("visitorCount").textContent="—"}
 reset();
 </script>
 </body>
